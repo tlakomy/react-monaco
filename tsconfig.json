@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "strict": true,
+    "outDir": "./dist/",
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "moduleResolution": "Node",
+    "jsx": "react"
+  },
+  "include": ["src/**/*"]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "react-monaco",
+  "version": "0.0.1",
+  "description": "A React + TS wrapper for Monaco Editor",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack serve --hot --inline --progress --port 5000 --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tlakomy/react-monaco.git"
+  },
+  "author": "Tomasz Łakomy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tlakomy/react-monaco/issues"
+  },
+  "homepage": "https://github.com/tlakomy/react-monaco#readme",
+  "dependencies": {
+    "monaco-editor": "^0.21.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.1",
+    "eslint": "^7.16.0",
+    "html-webpack-plugin": "^4.5.0",
+    "monaco-editor-webpack-plugin": "^2.1.0",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^8.0.12",
+    "typescript": "^4.1.3",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.0",
+    "webpack-dev-server": "^3.11.1"
+  }
+}
