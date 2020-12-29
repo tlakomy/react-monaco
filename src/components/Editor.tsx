@@ -1,11 +1,15 @@
 import * as React from 'react';
 import * as monaco from 'monaco-editor';
-import { Language } from '../types';
-
 import { setupMonaco } from '../setupMonaco';
+import { Language } from '../types';
 
 setupMonaco();
 
+/**
+ * For now we'll allow any prop from monaco.editor.IStandaloneEditorConstructionOptions
+ * to be passed in to Editor component. In the future we'll most likely limit the set of possible props
+ * in order not to expose a giant API
+ */
 type Props = {
   language: Language;
   className?: string;
@@ -26,7 +30,6 @@ function useMonacoEditor(
        * props are of type monaco.editor.IStandaloneEditorConstructionOptions
        * Docs: https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandaloneeditorconstructionoptions.html
        */
-
       editor.current = monaco.editor.create(containerRef.current, {
         language,
         ...props,
