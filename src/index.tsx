@@ -1,6 +1,15 @@
 import * as React from 'react';
 import { render } from 'react-dom';
+import { Editor } from './components/Editor';
 
-const App = () => <div>React Monaco</div>;
+import './index.css';
 
-render(<App />, document.getElementById('root'));
+render(
+  <React.StrictMode>
+    <div>
+      React Monaco
+      <Editor language='typescript' />
+    </div>
+  </React.StrictMode>,
+  document.getElementById('root'),
+);
