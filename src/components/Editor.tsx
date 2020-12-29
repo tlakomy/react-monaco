@@ -8,22 +8,22 @@ setupMonaco();
 
 type Props = {
   language: Language;
+  initialValue: string;
+  className?: string;
 };
 
 function useMonacoEditor(
   containerRef: React.RefObject<HTMLDivElement>,
-  { language }: Props,
+  { language, initialValue = '' }: Props,
 ) {
   const [value, setValue] = React.useState('');
-  let editor = React.useRef<monaco.editor.IStandaloneCodeEditor>();
-  let subscription = React.useRef<monaco.IDisposable>();
+  const editor = React.useRef<monaco.editor.IStandaloneCodeEditor>();
+  const subscription = React.useRef<monaco.IDisposable>();
 
   React.useEffect(() => {
     if (containerRef.current) {
       editor.current = monaco.editor.create(containerRef.current, {
-        value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join(
-          '\n',
-        ),
+        value: initialValue,
         language,
       });
 
@@ -42,13 +42,13 @@ function useMonacoEditor(
   return { value };
 }
 
-export const Editor = (props: Props) => {
+export const Editor = ({ className, ...props }: Props) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const { value } = useMonacoEditor(containerRef, props);
 
   return (
     <div>
-      <div className='monaco-editor' ref={containerRef}></div>
+      <div className={className} ref={containerRef}></div>
       <pre>{JSON.stringify(value, null, 2)}</pre>
     </div>
   );

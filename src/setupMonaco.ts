@@ -1,7 +1,7 @@
 export function setupMonaco() {
   // @ts-ignore
   self.MonacoEnvironment = {
-    getWorkerUrl: function (_moduleId: any, label: string) {
+    getWorkerUrl: function (_moduleId: unknown, label: string) {
       if (label === 'json') {
         return './json.worker.bundle.js';
       }
