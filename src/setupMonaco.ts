@@ -1,4 +1,7 @@
 export function setupMonaco() {
+  /**
+   * Monaco uses Web Workers to do the grunt work
+   */
   // @ts-ignore
   self.MonacoEnvironment = {
     getWorkerUrl: function (_moduleId: unknown, label: string) {

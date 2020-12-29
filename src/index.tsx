@@ -16,7 +16,7 @@ render(
       React Monaco
       <Editor
         language='typescript'
-        initialValue={initialValue}
+        value={initialValue}
         className='monaco-editor'
       />
     </div>

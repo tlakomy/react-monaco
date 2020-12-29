@@ -8,13 +8,12 @@ setupMonaco();
 
 type Props = {
   language: Language;
-  initialValue: string;
   className?: string;
-};
+} & monaco.editor.IStandaloneEditorConstructionOptions;
 
 function useMonacoEditor(
   containerRef: React.RefObject<HTMLDivElement>,
-  { language, initialValue = '' }: Props,
+  { language, ...props }: Props,
 ) {
   const [value, setValue] = React.useState('');
   const editor = React.useRef<monaco.editor.IStandaloneCodeEditor>();
@@ -22,11 +21,22 @@ function useMonacoEditor(
 
   React.useEffect(() => {
     if (containerRef.current) {
+      /**
+       * This is the crucial part - creating the Monaco Editor itself
+       * props are of type monaco.editor.IStandaloneEditorConstructionOptions
+       * Docs: https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandaloneeditorconstructionoptions.html
+       */
+
       editor.current = monaco.editor.create(containerRef.current, {
-        value: initialValue,
         language,
+        ...props,
       });
 
+      /**
+       * Setting up a subscrption to editor value
+       * This is a simple example but the hook will always return a current value
+       * (that is - code) provided by the user
+       */
       subscription.current = editor.current.onDidChangeModelContent(() => {
         setValue(editor.current ? editor.current.getValue() : '');
       });
@@ -34,6 +44,7 @@ function useMonacoEditor(
       setValue(editor.current.getValue());
     }
     return () => {
+      // Cleaning up the subscriptions when this component unmounts
       editor.current?.dispose();
       subscription.current?.dispose();
     };
